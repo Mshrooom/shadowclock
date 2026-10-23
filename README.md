@@ -1,6 +1,6 @@
 # shadowclock
 
-**Can a vision-language model read the time of day from overhead shadows?**
+**Can a vision-language model read the time of day from overhead shadows?** sandbox: "https://mshrooom.github.io/shadowclock/"
 
 A controlled benchmark with exact ground truth, a pixel-measuring baseline that solves it, twelve OpenStreetMap-derived
 city scenes you can watch under a moving sun, and a negative result reported as it is.
