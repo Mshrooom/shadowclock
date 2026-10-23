@@ -1,0 +1,6 @@
+# running open VLMs locally (Kaggle T4 x2 or any CUDA GPU). No API keys.
+-r requirements.txt
+torch
+transformers>=4.45
+accelerate
+bitsandbytes

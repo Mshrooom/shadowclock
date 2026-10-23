@@ -1,0 +1,19 @@
+{
+  "_note": "Numbers copied from the evaluate_hypotheses.py / score.py printouts of the Kaggle runs on the SYNTHETIC (procedural box) dataset. The raw prediction files are not in this repository; re-run notebooks/kaggle_run.ipynb to regenerate them. null = not recorded.",
+  "dataset": "synthetic box towns, 928 pairs (464 distinct + swapped twins), gaps 1/2/4 h, sun elevation <= 70 deg",
+  "analytic_baseline": {"R1_acc": 100.0, "R2_acc": 100.0, "R2_mae_h": 0.02, "n_pairs": 928},
+  "models_R1": [
+    {"label": "Qwen2.5-VL-7B-Instruct", "key": "qwen7b_main", "n_pairs": 300, "acc": 47.0, "ci_lo": 39.2, "ci_hi": 55.0, "a_rate": 32.0,
+     "probe_exact": 15.5, "probe_within_one_sector": 41.0, "probe_best_constant_exact": 19.5, "probe_best_constant_within_one_sector": 42.0},
+    {"label": "Qwen2.5-VL-3B-Instruct", "key": "qwen3b_main", "n_pairs": null, "acc": 50.0, "ci_lo": null, "ci_hi": null, "a_rate": 100.0},
+    {"label": "LLaVA-OneVision-7B (resize 384)", "key": "llavaov7b_main", "n_pairs": 100, "acc": 50.0, "ci_lo": null, "ci_hi": null, "a_rate": 100.0}
+  ],
+  "qwen7b_exploratory": {
+    "_note": "R3/R4 put the true shadow bearings in the TEXT, so they test text reasoning, not vision.",
+    "R2_gap_6h_8h_acc": 50.0,
+    "R3_acc": 42.0, "R3_north_acc": 57.7, "R3_south_acc": 25.0,
+    "R3_cot_acc": 28.3, "R3_cot_agrees_with_naive_rule": 72.0,
+    "R4_acc": 52.0, "R4_cot_acc": 55.0
+  },
+  "real_footprint_dataset_baseline": {"R0_acc": 51.1, "R1_acc": 85.5, "R2_acc": 80.4, "n_pairs": 698, "method": "auto (shadow axes, roof-edge fallback)"}
+}

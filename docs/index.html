@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shadowclock</title>
+<meta name="description" content="Can a vision-language model read the time of day from overhead shadows? A controlled benchmark, 12 OSM-derived city scenes, a 4D sun viewer and an honest negative result.">
+<style>
+  :root { --bg:#fcfcfb; --ink:#0b0b0b; --muted:#52514e; --line:#e3e2dc; --card:#ffffff; --blue:#2a78d6; --orange:#eb6834; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14171c; --ink:#f0efec; --muted:#b4b2a9; --line:#2b313a; --card:#1b2027; --blue:#3987e5; --orange:#d95926; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width: 920px; margin: 0 auto; padding: 40px 20px 64px; }
+  h1 { font-size: 40px; line-height: 1.1; margin: 0 0 8px; letter-spacing: -0.5px; }
+  h2 { font-size: 22px; margin: 44px 0 10px; }
+  p { margin: 0 0 12px; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 720px; }
+  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 8px; }
+  .btn { display:inline-block; padding:10px 18px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--ink); text-decoration:none; font-weight:600; }
+  .btn.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:16px 0; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .num { font-size:30px; font-weight:700; letter-spacing:-0.5px; }
+  .card .k { color:var(--muted); font-size:13.5px; }
+  img { max-width:100%; height:auto; border-radius:10px; border:1px solid var(--line); background:#fff; }
+  a { color:var(--blue); }
+  .limits li { margin-bottom:6px; }
+  footer { margin-top:48px; color:var(--muted); font-size:13.5px; border-top:1px solid var(--line); padding-top:16px; }
+  code { background:var(--card); border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:90%; }
+</style>
+</head>
+<body>
+<main>
+  <h1>shadowclock</h1>
+  <p class="lead">Can a vision-language model read the time of day from overhead shadows? A controlled benchmark with exact ground truth, twelve OSM-derived city scenes you can watch under a moving sun, and a negative result reported as it is.</p>
+  <div class="cta">
+    <a class="btn primary" href="world.html">Open the 4D sun viewer</a>
+    <a class="btn" href="map.html">Results map</a>
+    <a class="btn" href="world.html#city=chicago&amp;date=2027-03-20&amp;t=11&amp;view=nadir">Dense downtown (Chicago)</a>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="num">100%</div><div class="k">pixel baseline, synthetic scenes (which image is earlier, hemisphere given)</div></div>
+    <div class="card"><div class="num">85.5%</div><div class="k">same baseline on the 12 OSM-derived scenes, 698 pairs</div></div>
+    <div class="card"><div class="num" style="color:var(--orange)">~50%</div><div class="k">Qwen2.5-VL 3B/7B and LLaVA-OneVision 7B: chance, with strong position bias</div></div>
+  </div>
+
+  <h2>What the benchmark asks</h2>
+  <p>Two north-up, straight-down renders of the same place and date at different times. Which one is earlier, and by how many hours? Information is released in steps: images only (R0), plus the hemisphere (R1), plus latitude, longitude and date (R2). Sun positions come from the NOAA ephemeris, validated against pvlib. A baseline that measures shadow direction from the pixels solves the synthetic task, so the information is in the image.</p>
+  <img src="assets/figures/fig_overview.png" alt="Bar chart: pixel baseline 100% on synthetic and 85.5% on OSM-derived scenes; open VLMs near 50%">
+
+  <h2>Where the pixel baseline struggles</h2>
+  <p>On the OSM-derived scenes accuracy depends strongly on the city: 100% in Delhi, Santiago, Buenos Aires and Cape Town, but 56% in Chicago and 52% in Melbourne, where dense blocks make shadows merge and fall on neighbouring roofs. About 30 distinct pairs per city, so the intervals are wide. Click a city on the <a href="map.html">map</a>.</p>
+  <img src="assets/figures/fig_per_city.png" alt="Per-city baseline accuracy with 95% intervals, and accuracy against built-up share">
+
+  <h2>Play the model</h2>
+  <p>The <a href="world.html">viewer</a> includes the benchmark question for people: two renders, pick the earlier one, with the same sampling rules as the dataset and constant brightness so brightness is not a clue. Answers stay in your browser and export as CSV. A few dozen answers from a few people is a usability check, not a human benchmark.</p>
+
+  <h2>Honest limits</h2>
+  <ul class="limits">
+    <li>The "real" scenes are OSM footprints extruded and rendered: simulated imagery, not aerial photographs. About half of building heights are assumed defaults.</li>
+    <li>Only three small open models were tested, and two of them answer "A" almost always, so they say little about shadow reading. This is a negative result on weak models, not a statement about frontier models.</li>
+    <li>698 pairs (349 distinct plus their swapped twins) reuse 265 images from 12 scenes; they are not 698 independent tests.</li>
+    <li>Close predecessors exist (shadow-based acquisition-time inference on real aerial images, and VLM time-of-day benchmarks on street photos). This project is a controlled overhead diagnostic, not a claim of first.</li>
+  </ul>
+
+  <footer>
+    Code MIT. Building footprints &copy; OpenStreetMap contributors (ODbL). Basemaps: CARTO, Esri.
+    Rendered scenes are a derived database of OSM data and carry the same attribution. Source: the repository this site is served from.
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shadowclock 4D</title>
+<meta name="description" content="Twelve OSM-derived city blocks with a moving sun and real cast shadows: the scenes behind the shadowclock benchmark.">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0e1218; --panel: rgba(18, 23, 31, 0.88); --line: #2a3340; --ink: #eceae4; --muted: #a9b0ba;
+    --accent: #3987e5; --sun: #ffd35a; --good: #4fbf8a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  .panel { position: fixed; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; backdrop-filter: blur(6px); }
+  #hud { top: 12px; left: 12px; width: min(330px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; }
+  h1 { font-size: 16px; font-weight: 600; margin: 0 0 2px; }
+  .sub { color: var(--muted); font-size: 12.5px; margin: 0 0 12px; }
+  label, .lbl { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+  select, input[type=date], button { font: inherit; color: var(--ink); background: #1b232e; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  select, input[type=date] { width: 100%; }
+  button { cursor: pointer; }
+  button:hover { border-color: #46546a; }
+  button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .row > button { flex: 1 1 auto; font-size: 12.5px; padding: 6px 8px; }
+  input[type=range] { width: 100%; accent-color: var(--sun); }
+  .big { font-size: 26px; font-weight: 600; letter-spacing: 0.5px; font-variant-numeric: tabular-nums; }
+  dl { margin: 0; display: grid; gap: 2px; }
+  dl div { display: grid; grid-template-columns: 112px 1fr; gap: 8px; font-size: 12.5px; }
+  dt { color: var(--muted); } dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .tag { display: inline-block; font-size: 11.5px; padding: 1px 8px; border-radius: 999px; background: #232c38; color: var(--muted); }
+  .tag.good { background: #17382b; color: #8fe0b8; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 12px 0; }
+  .fine { font-size: 11.5px; color: var(--muted); }
+  a { color: #8ab8f5; }
+  #compass { position: fixed; top: 12px; right: 12px; width: 112px; }
+  #compass svg { width: 100%; height: auto; display: block; }
+  #status { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--muted); }
+  #quiz { top: 12px; right: 128px; width: min(560px, calc(100vw - 24px - 128px)); max-height: calc(100vh - 24px); overflow: auto; }
+  .hidden { display: none !important; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+  .pair figure { margin: 0; }
+  .pair canvas { width: 100%; aspect-ratio: 1; border-radius: 8px; border: 1px solid var(--line); display: block; background: #000; }
+  .pair figcaption { text-align: center; font-weight: 600; margin-top: 2px; }
+  .q-feedback { min-height: 22px; margin: 6px 0; font-weight: 500; }
+  .q-feedback.ok { color: #8fe0b8; } .q-feedback.bad { color: #ff9b8a; }
+  #q-stats { font-size: 12.5px; color: var(--muted); }
+  .topbar { display: flex; justify-content: space-between; align-items: baseline; }
+  .x { background: none; border: 0; font-size: 18px; padding: 0 4px; color: var(--muted); }
+  @media (max-width: 760px) { #quiz { right: 12px; top: auto; bottom: 12px; width: calc(100vw - 24px); max-height: 70vh; } #compass { width: 78px; } }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="status">loading...</div>
+
+<div id="hud" class="panel">
+  <h1>shadowclock 4D</h1>
+  <p class="sub">12 OSM-derived city blocks, one sun, real cast shadows. <a href="index.html">Project</a> · <a href="map.html">Results map</a></p>
+
+  <label for="city">City</label>
+  <select id="city"></select>
+
+  <div class="lbl">Date</div>
+  <div class="row">
+    <button data-date="2027-03-20">Mar equinox</button>
+    <button data-date="2027-06-21">Jun solstice</button>
+    <button data-date="2027-12-21">Dec solstice</button>
+  </div>
+  <input type="date" id="date" value="2027-06-21" style="margin-top:6px" aria-label="Date">
+
+  <div class="lbl">Local mean solar time</div>
+  <div class="big" id="timeout">12:00</div>
+  <input type="range" id="time" min="0" max="24" step="0.02" value="12" aria-label="Time of day">
+  <div class="row" style="margin-top:8px">
+    <button id="play">Play day</button>
+    <select id="speed" aria-label="Speed" style="width:auto;flex:0 0 96px">
+      <option value="0.5">slow</option><option value="1" selected>normal</option><option value="3">fast</option>
+    </select>
+  </div>
+
+  <div class="lbl">View</div>
+  <div class="row">
+    <button id="view-orbit" class="on">Orbit (drag)</button>
+    <button id="view-nadir">Benchmark view</button>
+  </div>
+  <p class="fine" style="margin:6px 0 0">Benchmark view = what the models see: straight down, north up, east right, constant brightness (brightness is not a time cue).</p>
+
+  <hr>
+  <dl>
+    <div><dt>Sun azimuth</dt><dd id="az"></dd></div>
+    <div><dt>Sun elevation</dt><dd id="el"></dd></div>
+    <div><dt>Shadow bearing</dt><dd id="shbear"></dd></div>
+    <div><dt>Benchmark window</dt><dd><span class="tag" id="window"></span></dd></div>
+  </dl>
+  <hr>
+  <dl id="cityinfo"></dl>
+  <hr>
+  <button id="open-quiz" style="width:100%">Play the model: which image is earlier?</button>
+  <p class="fine" style="margin:10px 0 0">Simulated scenes, not imagery. Building footprints &copy; OpenStreetMap contributors (ODbL); heights are partly assumed. Time is local <em>mean</em> solar time, not clock time.</p>
+</div>
+
+<div id="compass" class="panel" style="padding:4px" aria-label="Compass">
+  <svg viewBox="0 0 100 100" role="img" aria-label="Compass: north, sun direction, shadow direction">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#2a3340" stroke-width="1.5"/>
+    <g id="cp-n"><path d="M50 20 L56 40 L50 36 L44 40 Z" fill="#eceae4"/><text id="cp-ntxt" x="50" y="16" font-size="11" font-weight="700" text-anchor="middle" fill="#eceae4">N</text></g>
+    <g id="cp-shadow"><path d="M50 50 L50 20" stroke="#8a93a0" stroke-width="3" stroke-linecap="round"/><path d="M50 14 L55 24 L45 24 Z" fill="#8a93a0"/></g>
+    <g id="cp-sun"><path d="M50 50 L50 24" stroke="#ffd35a" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="19" r="6" fill="#ffd35a"/></g>
+    <circle cx="50" cy="50" r="3" fill="#eceae4"/>
+  </svg>
+  <div class="fine" style="text-align:center;font-size:10.5px;padding-bottom:4px">yellow sun · grey shadow</div>
+</div>
+
+<div id="quiz" class="panel hidden">
+  <div class="topbar"><h1>Play the model</h1><button class="x" id="close-quiz" aria-label="Close">&times;</button></div>
+  <p class="sub">The benchmark question, asked of you. Two renders of the same place and date; which is earlier?</p>
+  <div id="q-hint" class="fine" style="font-size:13px;color:var(--ink)"></div>
+  <div class="pair">
+    <figure><canvas id="q-a" width="512" height="512"></canvas><figcaption>A</figcaption></figure>
+    <figure><canvas id="q-b" width="512" height="512"></canvas><figcaption>B</figcaption></figure>
+  </div>
+  <div id="q-answers" class="row hidden"><button id="q-pickA">A is earlier</button><button id="q-pickB">B is earlier</button></div>
+  <div id="q-feedback" class="q-feedback"></div>
+  <div class="row"><button id="q-new">New pair</button><button id="q-next" class="hidden">Next pair</button></div>
+  <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" id="q-r2"> Also show latitude, longitude and date (R2)</label>
+  <hr>
+  <div id="q-stats"></div>
+  <div class="row" style="margin-top:8px"><button id="q-export">Export CSV</button><button id="q-reset">Reset</button></div>
+  <p class="fine" style="margin:8px 0 0">Answers are stored only in this browser. A few dozen answers from a few people is a usability check, not a human benchmark.</p>
+</div>
+
+<script src="assets/cities.js"></script>
+<script src="assets/world.js"></script>
+</body>
+</html>

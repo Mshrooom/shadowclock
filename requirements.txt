@@ -1,0 +1,4 @@
+# core: solar position, geometry, pairs, baseline, scoring
+numpy>=1.24
+scipy>=1.10
+pillow>=10.0

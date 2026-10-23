@@ -1,0 +1,290 @@
+[
+ {
+  "city": "buenosaires",
+  "file": "buenosaires_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 73.2,
+  "sun_el_deg": 22.9
+ },
+ {
+  "city": "buenosaires",
+  "file": "buenosaires_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 3.3,
+  "sun_el_deg": 55.4
+ },
+ {
+  "city": "buenosaires",
+  "file": "buenosaires_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 289.4,
+  "sun_el_deg": 25.8
+ },
+ {
+  "city": "capetown",
+  "file": "capetown_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 73.6,
+  "sun_el_deg": 23.1
+ },
+ {
+  "city": "capetown",
+  "file": "capetown_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 3.4,
+  "sun_el_deg": 56.2
+ },
+ {
+  "city": "capetown",
+  "file": "capetown_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 289.1,
+  "sun_el_deg": 26.0
+ },
+ {
+  "city": "chicago",
+  "file": "chicago_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 109.7,
+  "sun_el_deg": 20.5
+ },
+ {
+  "city": "chicago",
+  "file": "chicago_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 177.2,
+  "sun_el_deg": 48.0
+ },
+ {
+  "city": "chicago",
+  "file": "chicago_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 247.5,
+  "sun_el_deg": 23.1
+ },
+ {
+  "city": "delhi",
+  "file": "delhi_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 104.6,
+  "sun_el_deg": 24.3
+ },
+ {
+  "city": "delhi",
+  "file": "delhi_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 176.1,
+  "sun_el_deg": 61.1
+ },
+ {
+  "city": "delhi",
+  "file": "delhi_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 253.3,
+  "sun_el_deg": 27.5
+ },
+ {
+  "city": "johannesburg",
+  "file": "johannesburg_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 77.0,
+  "sun_el_deg": 25.1
+ },
+ {
+  "city": "johannesburg",
+  "file": "johannesburg_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 4.3,
+  "sun_el_deg": 63.9
+ },
+ {
+  "city": "johannesburg",
+  "file": "johannesburg_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 285.2,
+  "sun_el_deg": 28.3
+ },
+ {
+  "city": "london",
+  "file": "london_2027-03-20_0900.jpg",
+  "date": "2027-03-20",
+  "hour": 9.0,
+  "sun_az_deg": 126.3,
+  "sun_el_deg": 25.0
+ },
+ {
+  "city": "london",
+  "file": "london_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 177.6,
+  "sun_el_deg": 38.3
+ },
+ {
+  "city": "london",
+  "file": "london_2027-03-20_1500.jpg",
+  "date": "2027-03-20",
+  "hour": 15.0,
+  "sun_az_deg": 230.1,
+  "sun_el_deg": 26.9
+ },
+ {
+  "city": "madrid",
+  "file": "madrid_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 109.3,
+  "sun_el_deg": 20.9
+ },
+ {
+  "city": "madrid",
+  "file": "madrid_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 177.1,
+  "sun_el_deg": 49.4
+ },
+ {
+  "city": "madrid",
+  "file": "madrid_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 248.0,
+  "sun_el_deg": 23.6
+ },
+ {
+  "city": "melbourne",
+  "file": "melbourne_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 72.2,
+  "sun_el_deg": 22.1
+ },
+ {
+  "city": "melbourne",
+  "file": "melbourne_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 3.1,
+  "sun_el_deg": 52.4
+ },
+ {
+  "city": "melbourne",
+  "file": "melbourne_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 290.7,
+  "sun_el_deg": 24.8
+ },
+ {
+  "city": "newyork",
+  "file": "newyork_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 109.3,
+  "sun_el_deg": 20.8
+ },
+ {
+  "city": "newyork",
+  "file": "newyork_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 177.2,
+  "sun_el_deg": 49.2
+ },
+ {
+  "city": "newyork",
+  "file": "newyork_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 247.9,
+  "sun_el_deg": 23.6
+ },
+ {
+  "city": "santiago",
+  "file": "santiago_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 73.7,
+  "sun_el_deg": 23.2
+ },
+ {
+  "city": "santiago",
+  "file": "santiago_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 3.4,
+  "sun_el_deg": 56.6
+ },
+ {
+  "city": "santiago",
+  "file": "santiago_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 288.9,
+  "sun_el_deg": 26.1
+ },
+ {
+  "city": "sydney",
+  "file": "sydney_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 73.8,
+  "sun_el_deg": 23.2
+ },
+ {
+  "city": "sydney",
+  "file": "sydney_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 3.4,
+  "sun_el_deg": 56.4
+ },
+ {
+  "city": "sydney",
+  "file": "sydney_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 288.9,
+  "sun_el_deg": 26.2
+ },
+ {
+  "city": "tokyo",
+  "file": "tokyo_2027-03-20_0800.jpg",
+  "date": "2027-03-20",
+  "hour": 8.0,
+  "sun_az_deg": 107.6,
+  "sun_el_deg": 22.3
+ },
+ {
+  "city": "tokyo",
+  "file": "tokyo_2027-03-20_1200.jpg",
+  "date": "2027-03-20",
+  "hour": 12.0,
+  "sun_az_deg": 176.8,
+  "sun_el_deg": 54.0
+ },
+ {
+  "city": "tokyo",
+  "file": "tokyo_2027-03-20_1600.jpg",
+  "date": "2027-03-20",
+  "hour": 16.0,
+  "sun_az_deg": 249.9,
+  "sun_el_deg": 25.3
+ }
+]

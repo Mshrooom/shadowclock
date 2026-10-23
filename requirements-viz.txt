@@ -1,0 +1,5 @@
+# figures and the leafmap results map
+-r requirements.txt
+matplotlib>=3.7
+folium>=0.15
+leafmap>=0.35

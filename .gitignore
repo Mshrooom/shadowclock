@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+web/node_modules/
+# regenerated scene renders (large): see README, "Regenerate the dataset"
+data_real/
+data/images/
+*.zip
+.DS_Store

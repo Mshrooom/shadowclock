@@ -1,0 +1,5 @@
+# tests
+-r requirements.txt
+pytest>=7.4
+pvlib>=0.10
+pandas>=2.0

@@ -1,0 +1,14 @@
+{
+  "name": "shadowclock-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "4D sun viewer for the shadowclock OSM-derived city scenes (three.js)",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --minify --format=iife --legal-comments=none --outfile=../docs/assets/world.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.0",
+    "three": "0.170.0"
+  }
+}

@@ -1,0 +1,3 @@
+# rendering scenes with Blender as a Python module (needs Python 3.11 for the bpy wheel)
+-r requirements.txt
+bpy
